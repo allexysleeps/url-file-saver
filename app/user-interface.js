@@ -8,7 +8,7 @@ function UserInterface(callback) {
 	});
 	
 	let workArea = {
-		input: `${__dirname}/../input/url-list.txt`,
+		input: `${__dirname}/../input/`,
 		output: `${__dirname}/../output/`
 	}
 
@@ -18,7 +18,6 @@ function UserInterface(callback) {
 				workArea[key] = data;
 			}
 		}
-		
 		rl.question('Urls file location: ', (answer) => {
 			rewriteData('input', answer.trim());
 			

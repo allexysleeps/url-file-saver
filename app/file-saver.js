@@ -20,9 +20,14 @@ function FileSaver(input, output) {
 
 	var saveFile = function(filePath, index) {
 		const file = fs.createWriteStream(`${output}file-${index}.jpg`);
+		if(fs.existsSync(file)) {
+			return;
+		}
 		const fileStream = https.get(filePath, function (res) {
 			res.pipe(file);
 		});
+
+		console.log(fileStream);
 
 		fileStream.on('finish', function() {
 			downloadStatus.update();
@@ -30,7 +35,6 @@ function FileSaver(input, output) {
 	}
 
 	this.run = () => {
-		console.log(input);
 		fs.readFile(input, 'utf-8')
 			.then((data, err)=> {
 				if(err) {
